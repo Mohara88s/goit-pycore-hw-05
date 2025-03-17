@@ -1,15 +1,19 @@
 import sys
-from pathlib import Path
-from colorama import Fore
+from utility import load_logs, display_log_counts, count_logs_by_level, filter_logs_by_level
 
 def main():
     if len(sys.argv) > 1:
-        print(sys.argv)
-        directory = Path(sys.argv[1])
-        log_level = sys.argv[2]
+        directory = sys.argv[1]
     else:
         print('No path in the request!')
         return
+    logs = load_logs(directory)
+    if logs:     
+        display_log_counts(count_logs_by_level(logs))
+        if len(sys.argv) > 2:
+            log_level = sys.argv[2]
+            filter_logs_by_level(logs, log_level)
+
     
     
 

@@ -1,4 +1,6 @@
 from colorama import Fore, init
+from collections import namedtuple
+
 init(autoreset=True)
 COLORS_SET={
         'BLUE'        :Fore.BLUE,
@@ -48,7 +50,7 @@ def change_contact(args, contacts):
     name, phone = args
     if not name in contacts.keys():
         contacts[name] = phone
-        return colorize_message("The contact was not added to the phone book and we added it.", "GREEN")
+        return colorize_message("The contact was not found in the phone book so we added it.", "GREEN")
     contacts[name] = phone
     return colorize_message("Contact updated.", "GREEN")
 
@@ -63,8 +65,9 @@ def show_phone(args, contacts):
 
 def show_all(contacts):
     list_of_contacts = []
+    Contact = namedtuple('Contact', ['name', 'phone'])
     for key, value in contacts.items():
-        list_of_contacts.append([key, value])
+        list_of_contacts.append(Contact(key, value))
     return sorted(list_of_contacts)
 
 if __name__ == "__main__":

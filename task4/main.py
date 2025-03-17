@@ -24,9 +24,28 @@ def main():
         elif command == "all":
             print(colorize_message(f"{"Name":<20}{"Phone":<15}", "MAGENTA"))
             for i, contact in enumerate(show_all(contacts)):
-                print(colorize_message(f"{contact[0]:<20}{contact[1]:<15}", f"{"CYAN" if i%2==0 else "BLUE"}"))
+                print(colorize_message(f"{contact.name:<20}{contact.phone:<15}", f"{"CYAN" if i%2==0 else "BLUE"}"))
         else:
             print(colorize_message("Invalid command.", "YELLOW"))
 
 if __name__ == "__main__":
     main()
+
+
+# To start the project:
+# python -m venv .venv
+
+#   На Windows у командному рядку (CMD):
+#       .\.venv\Scripts\activate.bat
+#   На Windows у PowerShell:
+#       .\.venv\Scripts\Activate.ps1
+#   На macOS та Linux:
+#       source .venv/bin/activate
+
+# pip install -r requirements.txt
+
+# To generate requirements.txt:
+# pip freeze > requirements.txt
+
+# To end:
+#  deactivate
